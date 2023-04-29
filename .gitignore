@@ -1,0 +1,8 @@
+
+#server_node
+node_modules
+#client_node
+client/node_modules
+
+#Environment_variables
+.env

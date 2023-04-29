@@ -1,0 +1,280 @@
+# Query: console.log
+# ContextLines: 1
+
+64 results - 24 files
+
+server.js:
+  42  app.listen(PORT,()=>{
+  43:     
+  44  });
+
+client\src\index.js:
+  25  // If you want to start measuring performance in your app, pass a function
+  26: // to log results (for example: reportWebVitals(console.log))
+  27  // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
+client\src\components\Form\SearchInput.js:
+  17      } catch (error) {
+  18:       
+  19      }
+
+client\src\hooks\useCategory.js:
+  11      } catch (error) {
+  12:      
+  13      }
+
+client\src\pages\CartPage.js:
+  30      } catch (error) {
+  31:   
+  32      }
+
+  43      } catch (error) {
+  44:   
+  45      }
+
+  53      } catch (error) {
+  54:   
+  55      }
+
+  76      } catch (error) {
+  77:   
+  78        setLoading(false);
+
+client\src\pages\CategoryProduct.js:
+  22      } catch (error) {
+  23:   
+  24      }
+
+client\src\pages\HomePage.js:
+  29      } catch (error) {
+  30:   
+  31      }
+
+  46        setLoading(false);
+  47:   
+  48      }
+
+  63      } catch (error) {
+  64:   
+  65      }
+
+  79      } catch (error) {
+  80:   
+  81        setLoading(false);
+
+client\src\pages\ProductDetails.js:
+  25        getSimilarProduct(data?.product._id, data?.product.category._id);
+  26:       console.log(product);
+  27      } catch (error) {
+  28:   
+  29      }
+
+  38      } catch (error) {
+  39:   
+  40      }
+
+client\src\pages\Admin\AdminOrders.js:
+  27      } catch (error) {
+  28:   
+  29      }
+
+  41      } catch (error) {
+  42:   
+  43      }
+
+client\src\pages\Admin\CreateCategory.js:
+  27      } catch (error) {
+  28:   
+  29        toast.error("Something went wrong");
+
+  39      } catch (error) {
+  40:   
+  41        toast.error("Something went wrong in getting category");
+
+client\src\pages\Admin\CreateProduct.js:
+  29      } catch (error) {
+  30:   
+  31        toast.error("Something wwent wrong in getting catgeory");
+
+  59      } catch (error) {
+  60:   
+  61        toast.error("something went wrong");
+
+client\src\pages\Admin\Products.js:
+  16      } catch (error) {
+  17:   
+  18        toast.error("Someething Went Wrong");
+
+client\src\pages\Admin\UpdateProduct.js:
+   37      } catch (error) {
+   38:   
+   39      }
+
+   53      } catch (error) {
+   54:   
+   55        toast.error("Something wwent wrong in getting catgeory");
+
+   83      } catch (error) {
+   84:   
+   85        toast.error("something went wrong");
+
+   99      } catch (error) {
+  100:   
+  101        toast.error("Something went wrong");
+
+client\src\pages\Auth\ForgotPassword.js:
+  32      } catch (error) {
+  33:   
+  34        toast.error("Something went wrong");
+
+client\src\pages\Auth\Login.js:
+  38      } catch (error) {
+  39:   
+  40        toast.error("Something went wrong");
+
+client\src\pages\Auth\Register.js:
+  29        });
+  30:       console.log(res.data.message);
+  31        if (res && res.data.success) {
+
+  37      } catch (error) {
+  38:   
+  39        toast.error("Something went wrong");
+
+client\src\pages\user\Orders.js:
+  16      } catch (error) {
+  17:   
+  18      }
+
+client\src\pages\user\Profile.js:
+  47      } catch (error) {
+  48:   
+  49        toast.error("Something went wrong");
+
+config\db.js:
+  5          const conn = await mongoose.connect(process.env.MONGO_URL);
+  6:         console.log(`connected to mongodb database ${conn.connection.host}`.bgMagenta.white);
+  7      }catch(error){
+  8:      console.log(`Error in Mongodb ${error}`.bgRed.white);
+  9      }
+
+controllers\authController.js:
+   52    } catch (error) {
+   53: 
+   54      res.status(500).send({
+
+  104    } catch (error) {
+  105: 
+  106      res.status(500).send({
+
+  141    } catch (error) {
+  142: 
+  143      res.status(500).send({
+
+  183    } catch (error) {
+  184: 
+  185      res.status(400).send({
+
+  201    } catch (error) {
+  202: 
+  203      res.status(500).send({
+
+  220    } catch (error) {
+  221: 
+  222      res.status(500).send({
+
+  237    } catch (error) {
+  238: 
+  239      res.status(500).send({
+
+controllers\categoryController.js:
+   26    } catch (error) {
+   27: 
+   28      res.status(500).send({
+
+   50    } catch (error) {
+   51: 
+   52      res.status(500).send({
+
+   69    } catch (error) {
+   70: 
+   71      res.status(500).send({
+
+   88    } catch (error) {
+   89: 
+   90      res.status(500).send({
+
+  107    } catch (error) {
+  108: 
+  109      res.status(500).send({
+
+controllers\productController.js:
+   57    } catch (error) {
+   58: 
+   59      res.status(500).send({
+
+   82    } catch (error) {
+   83: 
+   84      res.status(500).send({
+
+  103    } catch (error) {
+  104: 
+  105      res.status(500).send({
+
+  121    } catch (error) {
+  122: 
+  123      res.status(500).send({
+
+  139    } catch (error) {
+  140: 
+  141      res.status(500).send({
+
+  189    } catch (error) {
+  190: 
+  191      res.status(500).send({
+
+  212    } catch (error) {
+  213: 
+  214      res.status(400).send({
+
+  230    } catch (error) {
+  231: 
+  232      res.status(400).send({
+
+  256    } catch (error) {
+  257: 
+  258      res.status(400).send({
+
+  279    } catch (error) {
+  280: 
+  281      res.send({
+
+  305    } catch (error) {
+  306: 
+  307      res.status(400).send({
+
+  325    } catch (error) {
+  326: 
+  327      res.status(400).send({
+
+  345    } catch (error) {
+  346: 
+  347    }
+
+  377    } catch (error) {
+  378: 
+  379    }
+
+helpers\authHelper.js:
+  7      }catch(error){
+  8:     
+  9      }
+
+middlewares\authMiddlewares.js:
+  12      } catch (error) {
+  13:     
+  14      }
+
+  29      } catch (error) {
+  30:     
+  31          res.status(401).send({
