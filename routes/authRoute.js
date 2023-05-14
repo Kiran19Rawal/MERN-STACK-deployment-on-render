@@ -8,6 +8,13 @@ import {
   getOrdersController,
   getAllOrdersController,
   orderStatusController,
+  getAllUsersController,
+  deleteUserController,
+  createCommentsController,
+  getCommentsController,
+  deleteCommentsController,
+  blockStatusController,
+  unblockStatusController,
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddlewares.js";
 //router object
@@ -50,4 +57,33 @@ router.put(
   orderStatusController
 );
 
+//get all users
+router.get("/get-users", getAllUsersController);
+
+//delete users
+router.delete(
+  "/delete-user/:uid",
+  requireSignIn,
+  isAdmin,
+  deleteUserController
+);
+//Block Status
+router.put("/block-status/:uid", requireSignIn, isAdmin, blockStatusController);
+
+//Unblock Status
+router.put(
+  "/unblock-status/:uid",
+  requireSignIn,
+  isAdmin,
+  unblockStatusController
+);
+
+//get comments
+router.get("/get-comments", getCommentsController);
+
+//create comments
+router.post("/comments", createCommentsController);
+
+//Delete comments
+router.delete("/delete-comments/:cid", deleteCommentsController);
 export default router

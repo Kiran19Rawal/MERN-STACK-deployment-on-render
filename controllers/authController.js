@@ -1,4 +1,5 @@
 import { comparePassword, hashPassword } from "../helpers/authHelper.js";
+import commentModel from "../models/commentModel.js";
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import JWT from "jsonwebtoken";
@@ -85,8 +86,9 @@ export const loginController = async (req, res) => {
     }
     //token
     const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
+      expiresIn: "4d",
     });
+
     res.status(200).send({
       success: true,
       message: "login successfully",
@@ -97,7 +99,9 @@ export const loginController = async (req, res) => {
         phone: user.phone,
         address: user.address,
         role: user.role,
+        status: user.status,
       },
+
       token,
     });
   } catch (error) {
@@ -226,12 +230,186 @@ export const orderStatusController = async (req, res) => {
   try {
     const { orderId } = req.params;
     const { status } = req.body;
-    const orders = await orderModel.findByIdAndUpdate(orderId, { status }, { new: true });
+    const orders = await orderModel.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
     res.json(orders);
   } catch (error) {
     res.status(500).send({
       success: false,
       message: "Error while updating Order",
+      error,
+    });
+  }
+};
+
+//all users
+export const getAllUsersController = async (req, res) => {
+  try {
+    const users = await userModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "All Users",
+      users,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Erorr in getting users",
+      error: error.message,
+    });
+  }
+};
+
+//delete user
+export const deleteUserController = async (req, res) => {
+  try {
+    await userModel.findByIdAndDelete(req.params.uid);
+    res.status(200).send({
+      success: true,
+      message: "User deleted Successfully",
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Error while deleting User",
+      error,
+    });
+  }
+};
+
+//block user Status
+export const blockStatusController = async (req, res) => {
+  try {
+    const statusBlockeduser = await userModel.findByIdAndUpdate(
+      req.params.uid,
+      {
+        status: 0,
+      },
+      { new: true }
+    );
+    res.status(200).json({
+      succes: true,
+      message: "User status block successfully",
+      statusBlockeduser,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      messaage: "Error while blocking status",
+      error,
+    });
+  }
+};
+
+//unblock user Status
+export const unblockStatusController = async (req, res) => {
+  try {
+    const statusUnblockeduser = await userModel.findByIdAndUpdate(
+      req.params.uid,
+      {
+        status: 1,
+      },
+      { new: true }
+    );
+    res.status(200).json({
+      succes: true,
+      message: "User status unblocked successfully",
+      statusUnblockeduser,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      messaage: "Error while blocking status",
+      error,
+    });
+  }
+};
+
+//create comments
+export const createCommentsController = async (req, res) => {
+  try {
+    const {
+      email,
+      phone,
+      name,
+      address,
+      title,
+      description,
+      username,
+      useremail,
+      userphone,
+    } = req.body;
+    if (!name) {
+      return res.send({ message: "name is required" });
+    }
+    if (!address) {
+      return res.send({ message: "address is required" });
+    }
+    if (!title) {
+      return res.send({ message: "address is required" });
+    }
+
+    if (!description) {
+      return res.send({ message: "Description is required" });
+    }
+    const comments = new commentModel({
+      email,
+      phone,
+      name,
+      address,
+      title,
+      description,
+      username,
+      useremail,
+      userphone,
+    });
+    comments.save();
+    res.status(201).send({
+      success: true,
+      message: " Comment Sent Successfully",
+      comments,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Error in adding comments",
+      error,
+    });
+  }
+};
+
+//get comments
+export const getCommentsController = async (req, res) => {
+  try {
+    const comments = await commentModel.find({});
+    res.status(200).send({
+      success: true,
+      message: "All comments",
+      comments,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Error in getting comments",
+    });
+  }
+};
+
+//delete comments
+export const deleteCommentsController = async (req, res) => {
+  try {
+    await commentModel.findByIdAndDelete(req.params.cid);
+    res.status(200).send({
+      success: true,
+      message: "Comments Deleted Successfully",
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Error while deleting Comments",
       error,
     });
   }
